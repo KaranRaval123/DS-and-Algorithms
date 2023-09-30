@@ -12,21 +12,15 @@
     # return -1
 # arr = [2, 3, 4, 10, 40]
 # print(binarySearch(arr, 40))
-def binarySearchFor2D(nums,target):
-    r = 0
-    c = len(nums) - 1
-    while r < len(nums) and c >= 0:
-        if (nums[r][c] == target):
-            return[r,c]
-        elif nums[r][c] < target:
-            r+=1
-        else:
-            c-=1
-    return [-1,-1]
-arr = [
-    [10,20,30,40],
-    [15,25,35,45],
-    [28,29,49,57],
-    [33,34,38,50]
-]
-print(binarySearchFor2D(arr,49))
+def binarySearch(nums,target,low,high):
+    mid = low + (high-low) // 2
+    if low <= high:
+        if target == nums[mid]:
+            return mid
+        elif target < nums[mid]:
+            return binarySearch(nums,target,low,mid-1)
+        elif target > nums[mid]:
+            return binarySearch(nums,target,mid+1,high)
+    return -1
+arr = [2, 3, 4, 10, 40]
+print(binarySearch(arr, 40,0,len(arr)))
