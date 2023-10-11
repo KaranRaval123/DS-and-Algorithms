@@ -10,19 +10,19 @@ const mergeSort = (nums) =>{
 
     return merge(sortedLeft,sortedRight)
 }
-const merge = (left:number[], right:number[]) => {
-    let result:number[] = [];
+const merge = (left, right) => {
+    let result = [];
     while (left.length && right.length) {
         if (left[0] <= right[0]) {
-            result.push(left.shift() as number);
+            result.push(left.shift());
         } else {
-            result.push(right.shift() as number);
+            result.push(right.shift());
         }
     }
     return result.concat(left, right);
 }
 
-const array = Array.from({length:50000},()=>Math.floor(Math.random()*100000));
+const array = Array.from({length:10000},()=>Math.floor(Math.random()*100000));
 console.time("merge sort")  
 console.log(mergeSort(array)); 
 console.timeEnd("merge sort")
