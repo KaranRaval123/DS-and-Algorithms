@@ -10,7 +10,7 @@ function algorithmA(arr) {
   }
   return arr;
 }
-//an algorithms with O(n^3) is faster than O(n^2) for input size of 10 but it grows significantly larger for large input size
+//algorithm with O(n^3) is faster than O(n^2) for input size of 10 but it grows significantly larger for large input size
 function algorithmB(arr) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
