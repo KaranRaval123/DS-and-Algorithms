@@ -15,11 +15,9 @@ def merge(left, right):
     results = []
     while len(left) and len(right):
         if left[0] < right[0]:
-            results.append(left[0])
-            left.pop(0)
+            results.append(left.pop(0))
         else:
-            results.append(right[0])
-            right.pop(0)
+            results.append(right.pop(0))
     results+=left + right
     return results
 
