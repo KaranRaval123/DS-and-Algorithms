@@ -1,29 +1,31 @@
 # Use mergesort when you dont care about space complexity and data is very large
 # time complexity O(n log(n)) space complexity O(n)
-def merge_sort(arr):
-    if len(arr) <= 1:
-        return arr
-    mid = len(arr) // 2
-    left_half = arr[:mid]
-    right_half = arr[mid:]
-    left_half = merge_sort(left_half)
-    right_half = merge_sort(right_half)
-    return merge(left_half, right_half)
+import random
+import time
+
+def mergeSort(nums):
+    if len(nums) <= 1:
+        return nums
+    mid = len(nums) // 2
+    left = mergeSort(nums[:mid])
+    right = mergeSort(nums[mid:])
+    return merge(left, right)
 
 def merge(left, right):
-    merged = []
-    left_index, right_index = 0, 0
-    while left_index < len(left) and right_index < len(right):
-        if left[left_index] < right[right_index]:
-            merged.append(left[left_index])
-            left_index += 1
+    results = []
+    while len(left) and len(right):
+        if left[0] < right[0]:
+            results.append(left[0])
+            left.pop(0)
         else:
-            merged.append(right[right_index])
-            right_index += 1
-    merged.extend(left[left_index:])
-    merged.extend(right[right_index:])
-    return merged
+            results.append(right[0])
+            right.pop(0)
+    results+=left + right
+    return results
 
-unsorted_list = [38, 27,1,2,2,2,3,3, 43, 3, 9, 82, 10]
-sorted_list = merge_sort(unsorted_list)
-print("Sorted list:", sorted_list)
+random_array = [random.randint(0, 99999) for _ in range(50000)]
+start = time.time()
+print(mergeSort(random_array))
+end = time.time() - start
+print(end)
+
